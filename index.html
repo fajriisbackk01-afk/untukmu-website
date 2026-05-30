@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Untuk Kamu ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: #ff6b6b;
+            pointer-events: none;
+            animation: floatUp 4s ease-in-out forwards;
+            z-index: 999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Card */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 30px 25px;
+            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Profile Photo */
+        .photo-frame {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ff6b6b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .photo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Name */
+        .name {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* Quote */
+        .quote {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 25px;
+            padding: 0 15px;
+        }
+
+        /* Love Message */
+        .love-message {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .love-message p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Reasons List */
+        .reasons {
+            margin: 25px 0;
+        }
+
+        .reason-item {
+            background: #f8f9fa;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
+        .reason-item:hover {
+            background: #ffe0e0;
+            transform: translateX(10px);
+        }
+
+        .reason-icon {
+            font-size: 24px;
+        }
+
+        .reason-text {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Memory Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .memory {
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .memory:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .memory-emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .memory-text {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Button */
+        .btn-love {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 20px 0;
+        }
+
+        .btn-love:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255,107,107,0.4);
+        }
+
+        /* Music Player */
+        .music-player {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .music-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Counter */
+        .counter {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        /* Countdown */
+        .countdown {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .countdown-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .countdown-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-box {
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 10px;
+            min-width: 50px;
+            display: inline-block;
+        }
+
+        .countdown-label {
+            font-size: 10px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .container {
+                padding: 15px;
+            }
+            .name {
+                font-size: 24px;
+            }
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Main Card -->
+    <div class="card">
+        <!-- Foto -->
+        <div class="photo-frame">
+            <img src="https://i.pinimg.com/736x/7b/9c/5c/7b9c5cf7d88da6a9bcb25bc00e4c6f1c.jpg" 
+                 alt="Foto Kamu" 
+                 class="photo"
+                 id="profilePhoto">
+        </div>
+
+        <!-- Nama -->
+        <div class="name">
+            Untuk <span id="girlName">Khotimah</span> ❤️
+        </div>
+
+        <!-- Quote -->
+        <div class="quote">
+            "Setiap hari bersamamu adalah anugerah terindah"
+        </div>
+
+        <!-- Love Message -->
+        <div class="love-message">
+            <p id="loveMessage">
+                Hayooo, ini buat kamu! <br>
+                Aku cuma mau bilang kalau kamu itu luar biasa.<br>
+                Senyummu bikin hariku cerah. 💫<br>
+                Makasih ya udah jadi bagian dari hidup aku. 🤍
+            </p>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown">
+            <div class="countdown-title">❤️ Waktu Bersama Kita ❤️</div>
+            <div class="countdown-numbers">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">0</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">0</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">0</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">0</div>
+                    <div class="countdown-label">Detik</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reasons List -->
+        <div class="reasons" id="reasonsContainer">
+            <!-- Isi dari JS -->
+        </div>
+
+        <!-- Memory Gallery -->
+        <div class="gallery" id="galleryContainer">
+            <!-- Isi dari JS -->
+        </div>
+
+        <!-- Music Player -->
+        <div class="music-player">
+            <div class="music-title">🎵 Lagu Untukmu 🎵</div>
+            <audio controls autoplay loop id="bgMusic">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Browser kamu ga support audio.
+            </audio>
+        </div>
+
+        <!-- Button -->
+        <button class="btn-love pulse" id="surpriseBtn">
+            ✨ Klik untuk Kejutan ✨
+        </button>
+
+        <!-- Counter Pengunjung -->
+        <div class="counter">
+            ❤️ Sudah dilihat <span id="visitCount">0</span> kali ❤️
+        </div>
+    </div>
+</div>
+
+<script>
+    // ========== EDIT DI SINI! ==========
+    
+    // NAMA PACAR KAMU
+    const girlName = "Sayangku";  // ← GANTI DENGAN NAMA PACAR LU!
+    
+    // TANGGAL MULAI PACARAN (TAHUN-BULAN-TANGGAL)
+    const startDate = new Date(2025, 4, 6);  // ← GANTI TANGGAL MULAI!
+    // Contoh: 2024, 0, 1 = 1 Januari 2024
+    //         2024, 5, 15 = 15 Juni 2024
+    
+    // PESAN CINTA (GANTI SESUKA LU)
+    const loveMessage = "Aku gak tahu masa depan bakal kayak gimana, tapi aku tahu aku mau masa depanku sama kamu. 👫\n\n" +
+                        "Aku cuma mau bilang kalau kamu itu luar biasa.\n" +
+                        "Senyummu bikin hariku cerah. ✨\n" +
+                        "Makasih ya udah jadi bagian dari hidup aku. 🤍\n\n" +
+                        "I LOVE YOU! 💖";
+    
+    // ALASAN SAYANG (EDIT!)
+    const reasons = [
+        "💖 Kamu selalu ada buat aku",
+        "🌞 Senyumanmu mencerahkan hari",
+        "🎀 Kamu orangnya perhatian banget",
+        "🍿 Seru banget kalau nonton bareng kamu",
+        "💪 Kamu support aku terus",
+        "😊 Kamu bisa bikin aku happy",
+        "💭 Aku selalu mikirin kamu setiap hari",
+        "❤️ Karena kamu adalah kamu"
+    ];
+    
+    // KENANGAN (EDIT!)
+    const memories = [
+        { emoji: "🎂", text: "Ulang Tahun" },
+        { emoji: "✈️", text: "Liburan" },
+    ];
+    
+    // FOTO PROFIL (GANTI DENGAN LINK FOTO LU!)
+    const profilePhoto = "https://files.catbox.moe/14k30k.jpg";
+    
+    // LINK MUSIK (GANTI DENGAN LAGU KESUKAAN!)
+    const musicUrl = "https://files.catbox.moe/dgd3sz.mp3";
+    
+    // ========== JANGAN UBAH DI BAWAH INI ==========
+    
+    // Set Nama
+    document.getElementById('girlName').innerText = girlName;
+    document.getElementById('loveMessage').innerHTML = loveMessage.replace(/\n/g, '<br>');
+    document.getElementById('profilePhoto').src = profilePhoto;
+    
+    // Set Music
+    const audio = document.getElementById('bgMusic');
+    audio.src = musicUrl;
+    
+    // Reasons
+    const reasonsContainer = document.getElementById('reasonsContainer');
+    reasons.forEach(reason => {
+        const item = document.createElement('div');
+        item.className = 'reason-item';
+        item.innerHTML = `<div class="reason-icon">❤️</div>
+                          <div class="reason-text">${reason}</div>`;
+        reasonsContainer.appendChild(item);
+    });
+    
+    // Memories Gallery
+    const galleryContainer = document.getElementById('galleryContainer');
+    memories.forEach(memory => {
+        const item = document.createElement('div');
+        item.className = 'memory';
+        item.innerHTML = `<div class="memory-emoji">${memory.emoji}</div>
+                          <div class="memory-text">${memory.text}</div>`;
+        galleryContainer.appendChild(item);
+    });
+    
+    // Countdown
+    function updateCountdown() {
+        const now = new Date();
+        const diff = now - startDate;
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / (3600000));
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Floating Hearts
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = ['❤️', '💖', '💕', '💗', '💓', '💘'][Math.floor(Math.random() * 6)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+    
+    setInterval(createHeart, 500);
+    
+    // Surprise Button
+    document.getElementById('surpriseBtn').addEventListener('click', () => {
+        const surprises = [
+            "💖 Aku Sayang Kamu! 💖",
+            "✨ Kamu Bikin Hidupku Indah ✨",
+            "🌹 Kamu yang Terbaik! 🌹",
+            "💕 Love You! 💕",
+            "🌟 Kamu Istimewa! 🌟",
+            "🎀 Gak Ada yang Kayak Kamu 🎀",
+            "💭 Selalu Ada di Pikiran 💭",
+            "🌼 Kamu Cantik/Seperti Bidadari 🌼"
+        ];
+        const random = surprises[Math.floor(Math.random() * surprises.length)];
+        alert(random);
+        
+        for(let i = 0; i < 10; i++) {
+            setTimeout(() => createHeart(), i * 100);
+        }
+    });
+    
+    // Visitor Counter
+    let visitCount = localStorage.getItem('visitCount') || 0;
+    visitCount++;
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visitCount').innerText = visitCount;
+    
+    // Auto play music
+    document.body.addEventListener('click', () => {
+        audio.play().catch(() => {});
+    }, { once: true });
+    
+    console.log("❤️ Web untuk " + girlName + " sudah siap!");
+</script>
+</body>
+</html>
